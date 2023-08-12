@@ -1,0 +1,52 @@
+//we can loop thru the map and generate a classes for each of those vals..
+// once we loop thru our the colors collections, we can see in the compiled css file all of the diff classes created, and ready to use
+@each $key, $val in $colors {
+  .text-#{$key} { //to output the var inside the selector we ve to use the #{}
+    color: $val;
+  }
+  .text-hover-#{$key} {
+    &:hover { // the parent selector (& ampersand) and colon: followed by the bunch of inbuild pseudo selection class available, and this all inside the one selector instead of rewriting the every single pseudo class and thats the benefit of it
+      color: $val;
+    }
+  }
+  .bg-#{$key} {
+    background-color: $val;
+  }
+  // the for loop applies only when the condn if the val is not black and white 
+  @if ($val != black and $val != white) {
+    // light variations, this nested for loop will loop thru the collection 9 times to generate b/w the light variations and the dark variations
+    @for $i from 1 through 9 {
+      //for the text color
+      .text-#{$key}-light-#{$i} { // this looks like .text-primary-light-7.. and all we wana do is give the text a diff color
+        // it will gets more lighter as it reaches 9 or 90%
+        color: mix(white, $val, $i * 10); //by using this mix(). mix the white col with the whatever val we re in, and 3 rd arg how much we wana mix in some kinda percent -- so for the 1st iter i is 1 its gon mix white with 10% and as it iterates thru it will gets more lighter
+      }
+      .text-hover-#{$key}-light-#{$i} {
+        &:hover {
+          color: mix(white, $val, $i * 10);
+        }
+      }
+      // similarly lets gen classes for the bg col
+      .bg-#{$key}-light-#{$i} { 
+        background-color: mix(white, $val, $i * 10);
+      }
+    }
+
+    // dark variations, similar as the lighter, but instead of white this time its dark and as it iterates thru it'll gets more darker
+    @for $i from 1 through 9 {
+      .text-#{$key}-dark-#{$i} {
+        color: mix(black, $val, $i * 10);
+      }
+      .text-hover-#{$key}-dark-#{$i} {
+        &:hover {
+          color: mix(black, $val, $i * 10);
+        }
+      }
+      .bg-#{$key}-dark-#{$i} {
+        background-color: mix(black, $val, $i * 10);
+      }
+    }
+  }
+}
+
+// &:nth-child, &:active, &:visited, &:last-child etc

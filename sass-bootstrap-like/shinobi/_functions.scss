@@ -1,0 +1,6 @@
+// sass cust fns , we can use this in our btn
+@function light-comp($color) {
+  $complement: complement($color);
+  $light-complement: lighten($complement, 30%);
+  @return $light-complement;
+}
