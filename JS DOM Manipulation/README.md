@@ -72,7 +72,7 @@
 - think of it as an electricity that travels to the wire
 - the event traverse through each node  in the DOM tree until it reaches the end or forcibly stopped.
 - This one has 3 phases 1. Event Capturing 2. Target 3. Event Bubbling
-- <img src=".Event Propagation phases.png/>
+- <img src="./Event Propagation phases.png"/>
 - In the above diagram we can see how the event traverse phase works.
 - the 1st phase will start frm the dom travel each elems until it reaches the target phase.
 - then the target phase, once its clicked then the next phase will be the bubble phase opposite of the capture phase, it just travels up to the doc.
